@@ -1,5 +1,7 @@
 import type { NextFetchEvent, NextRequest } from "next/server";
 
+const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL || "http://localhost:3000";
+
 export default function middleware(req: NextRequest, event: NextFetchEvent) {
   const route = req.nextUrl.pathname;
   if (!route.includes("/api/metrics")) {
@@ -23,7 +25,13 @@ export default function middleware(req: NextRequest, event: NextFetchEvent) {
     };
     event.waitUntil(
       (async () => {
-        console.log(logData);
+        await fetch(`${HOST_URL}/api/metrics`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(logData),
+        });
       })()
     );
   }
