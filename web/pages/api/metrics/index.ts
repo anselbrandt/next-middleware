@@ -20,7 +20,7 @@ export default async function handler(
     const logData = req.body;
     const client = new Redis(REDIS_URL);
     client.set(logData.timestamp.toString(), JSON.stringify(logData));
-    res.status(200).send("OK");
+    res.send("ok");
   } catch (err) {
     const error: any = err;
     res.status(405).send(error.message);

@@ -24,13 +24,20 @@ export default function middleware(req: NextRequest, event: NextFetchEvent) {
     };
     event.waitUntil(
       (async () => {
-        await fetch(`${HOST_URL}/api/metrics/`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(logData),
-        });
+        try {
+          const response = await fetch(`${HOST_URL}/api/metrics/`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(logData),
+          });
+          await response.text();
+          return response.ok;
+        } catch (err) {
+          const error = err as Error;
+          console.log(error.message);
+        }
       })()
     );
   }
