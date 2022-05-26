@@ -1,6 +1,5 @@
 import type { NextFetchEvent, NextRequest } from "next/server";
-
-const HOST_URL = process.env.NEXT_PUBLIC_HOST_URL || "http://localhost:3000";
+import { HOST_URL } from "../constants";
 
 export default function middleware(req: NextRequest, event: NextFetchEvent) {
   const route = req.nextUrl.pathname;

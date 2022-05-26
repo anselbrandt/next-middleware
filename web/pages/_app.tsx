@@ -1,4 +1,5 @@
 import type { AppProps, NextWebVitalsMetric } from "next/app";
+import { HOST_URL } from "../constants";
 import "../styles/globals.css";
 
 export async function reportWebVitals(metric: NextWebVitalsMetric) {
@@ -6,7 +7,7 @@ export async function reportWebVitals(metric: NextWebVitalsMetric) {
   const timestamp = time.getTime();
   const date = time.toLocaleString();
   const metricData = { timestamp, date, ...metric };
-  await fetch("/api/metrics", {
+  await fetch(`${HOST_URL}/api/metrics/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
