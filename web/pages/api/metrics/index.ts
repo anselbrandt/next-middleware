@@ -2,9 +2,7 @@
 import Redis from "ioredis";
 import type { NextApiRequest, NextApiResponse } from "next";
 import NextCors from "nextjs-cors";
-import { HOST_URL } from "../../../constants";
-
-const REDIS_URL = process.env.REDIS_URL as string;
+import { HOST_URL, REDIS_URL } from "../../../constants";
 
 export default async function handler(
   req: NextApiRequest,
