@@ -25,7 +25,7 @@ export default function middleware(req: NextRequest, event: NextFetchEvent) {
     };
     event.waitUntil(
       (async () => {
-        await fetch(`${HOST_URL}/api/metrics`, {
+        await fetch(`${HOST_URL}/api/metrics/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
