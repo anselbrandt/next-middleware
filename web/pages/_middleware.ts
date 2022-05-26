@@ -8,7 +8,7 @@ export default function middleware(req: NextRequest, event: NextFetchEvent) {
     const timestamp = time.getTime();
     const date = time.toLocaleString();
     const referrer = req.referrer;
-    const geo = req.geo?.country;
+    const geo = req.geo;
     const method = req.method;
     const browser = req.ua?.browser;
     const device = req.ua?.device;
