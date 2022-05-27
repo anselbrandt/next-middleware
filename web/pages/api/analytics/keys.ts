@@ -16,9 +16,7 @@ export default async function handler(
     });
     const client = new Redis(REDIS_URL);
     const keys = await client.keys("*");
-    const values = await client.mget(keys);
-    const logs = values.map((value) => JSON.parse(value as string));
-    res.json(logs);
+    res.json(keys);
   } catch (err) {
     const error: any = err;
     res.status(405).send(error.message);

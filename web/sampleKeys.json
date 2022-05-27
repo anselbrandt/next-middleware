@@ -1,0 +1,13 @@
+[
+  "1653638164323@7:56:04 AM http_request method=GET path=/ referrer=undefined",
+  "1653638164358@3:56:04 AM web_vitals Next.js-hydration=7.199999809265137",
+  "1653638164572@7:56:04 AM http_request method=GET path=/vercel.svg referrer=undefined",
+  "1653638174683@3:56:14 AM web_vitals FCP=131.79999995231628",
+  "1653638174877@7:56:14 AM http_request method=GET path=/favicon.ico referrer=undefined",
+  "1653638208541@7:56:48 AM http_request method=GET path=/api/analytics referrer=undefined",
+  "1653638208704@3:56:48 AM web_vitals LCP=131.799",
+  "1653639829364@4:23:49 a.m. http_request method=GET path=/api/analytics referrer=about:client",
+  "1653639907229@4:25:07 a.m. http_request method=GET path=/api/analytics referrer=about:client",
+  "1653639907568@4:25:07 a.m. http_request method=GET path=/favicon.ico referrer=about:client",
+  "1653640062318@4:27:42 a.m. http_request method=GET path=/api/analytics/keys referrer=about:client"
+]

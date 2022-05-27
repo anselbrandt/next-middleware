@@ -1,26 +1,8 @@
 [
   {
-    "timestamp": 1653633365441,
-    "date": "5/27/2022, 2:36:05 AM",
-    "id": "v2-1653633364451-5029354724581",
-    "name": "FCP",
-    "startTime": 1000,
-    "value": 1000,
-    "label": "web-vital"
-  },
-  {
-    "timestamp": 1653633383623,
-    "date": "5/27/2022, 2:36:23 AM",
-    "id": "1653633383623-1987876055840",
-    "name": "Next.js-hydration",
-    "startTime": 137.59999990463257,
-    "value": 5.900000095367432,
-    "label": "custom"
-  },
-  {
-    "timestamp": 1653633383624,
-    "date": "5/27/2022, 6:36:23 AM",
-    "route": "/",
+    "timestamp": 1653638164323,
+    "date": "5/27/2022, 7:56:04 AM",
+    "path": "/",
     "geo": {
       "city": "Montreal",
       "country": "CA",
@@ -28,6 +10,98 @@
       "longitude": "-73.6091",
       "region": "QC"
     },
+    "method": "GET",
+    "browser": { "name": "Chrome", "version": "102.0.5005.61", "major": "102" },
+    "device": {}
+  },
+  {
+    "timestamp": 1653638164358,
+    "date": "5/27/2022, 3:56:04 AM",
+    "id": "1653638164358-7853999154203",
+    "name": "Next.js-hydration",
+    "startTime": 357.2000000476837,
+    "value": 7.199999809265137,
+    "label": "custom"
+  },
+  {
+    "timestamp": 1653638164572,
+    "date": "5/27/2022, 7:56:04 AM",
+    "path": "/vercel.svg",
+    "geo": {
+      "city": "Montreal",
+      "country": "CA",
+      "latitude": "45.5332",
+      "longitude": "-73.6091",
+      "region": "QC"
+    },
+    "method": "GET",
+    "browser": { "name": "Chrome", "version": "102.0.5005.61", "major": "102" },
+    "device": {}
+  },
+  {
+    "timestamp": 1653638174683,
+    "date": "5/27/2022, 3:56:14 AM",
+    "id": "v2-1653638174683-4672807231915",
+    "name": "FCP",
+    "startTime": 131.79999995231628,
+    "value": 131.79999995231628,
+    "label": "web-vital"
+  },
+  {
+    "timestamp": 1653638174877,
+    "date": "5/27/2022, 7:56:14 AM",
+    "path": "/favicon.ico",
+    "geo": {
+      "city": "Montreal",
+      "country": "CA",
+      "latitude": "45.5332",
+      "longitude": "-73.6091",
+      "region": "QC"
+    },
+    "method": "GET",
+    "browser": { "name": "Chrome", "version": "102.0.5005.61", "major": "102" },
+    "device": {}
+  },
+  {
+    "timestamp": 1653638208541,
+    "date": "5/27/2022, 7:56:48 AM",
+    "path": "/api/analytics",
+    "geo": {
+      "city": "Montreal",
+      "country": "CA",
+      "latitude": "45.5332",
+      "longitude": "-73.6091",
+      "region": "QC"
+    },
+    "method": "GET",
+    "browser": { "name": "Chrome", "version": "102.0.5005.61", "major": "102" },
+    "device": {}
+  },
+  {
+    "timestamp": 1653638208704,
+    "date": "5/27/2022, 3:56:48 AM",
+    "id": "v2-1653638174683-6460267939169",
+    "name": "LCP",
+    "startTime": 131.799,
+    "value": 131.799,
+    "label": "web-vital"
+  },
+  {
+    "timestamp": 1653639829364,
+    "date": "2022-05-27, 4:23:49 a.m.",
+    "path": "/api/analytics",
+    "referrer": "about:client",
+    "geo": {},
+    "method": "GET",
+    "browser": { "name": "Chrome", "version": "102.0.5005.61", "major": "102" },
+    "device": {}
+  },
+  {
+    "timestamp": 1653639907229,
+    "date": "2022-05-27, 4:25:07 a.m.",
+    "path": "/api/analytics",
+    "referrer": "about:client",
+    "geo": {},
     "method": "GET",
     "browser": { "name": "Chrome", "version": "102.0.5005.61", "major": "102" },
     "device": {}
