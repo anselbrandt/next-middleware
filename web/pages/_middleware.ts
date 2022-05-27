@@ -1,8 +1,6 @@
 import type { NextFetchEvent, NextRequest } from "next/server";
 import { HOST_URL } from "../constants";
 
-// http_request method=GET path=/ referrer=google.com @1434317560938
-
 export default function middleware(req: NextRequest, event: NextFetchEvent) {
   const path = req.nextUrl.pathname;
   if (!path.includes("/api/metrics")) {
@@ -24,7 +22,7 @@ export default function middleware(req: NextRequest, event: NextFetchEvent) {
       browser,
       device,
     };
-    const logKey = `${time.toLocaleTimeString()} http_request method=${method} path=${path} referrer=${referrer} @${timestamp}`;
+    const logKey = `${timestamp}@${time.toLocaleTimeString()} http_request method=${method} path=${path} referrer=${referrer}`;
     event.waitUntil(
       (async () => {
         try {

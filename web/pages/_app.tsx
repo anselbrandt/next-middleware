@@ -2,17 +2,15 @@ import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { HOST_URL } from "../constants";
 import "../styles/globals.css";
 
-// http_request method=GET path=/ referrer=google.com @1434317560938
-
 export async function reportWebVitals(metric: NextWebVitalsMetric) {
   try {
     const time = new Date();
     const timestamp = time.getTime();
     const date = time.toLocaleString();
     const metricData = { timestamp, date, ...metric };
-    const logKey = `${time.toLocaleTimeString()} web_vitals ${metric.name}=${
-      metric.value
-    } @${timestamp}`;
+    const logKey = `${timestamp}@${time.toLocaleTimeString()} web_vitals ${
+      metric.name
+    }=${metric.value}`;
     const response = await fetch(
       `${HOST_URL}/api/metrics/${encodeURIComponent(logKey)}`,
       {
