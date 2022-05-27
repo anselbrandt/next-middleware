@@ -1,0 +1,35 @@
+[
+  {
+    "timestamp": 1653633365441,
+    "date": "5/27/2022, 2:36:05 AM",
+    "id": "v2-1653633364451-5029354724581",
+    "name": "FCP",
+    "startTime": 1000,
+    "value": 1000,
+    "label": "web-vital"
+  },
+  {
+    "timestamp": 1653633383623,
+    "date": "5/27/2022, 2:36:23 AM",
+    "id": "1653633383623-1987876055840",
+    "name": "Next.js-hydration",
+    "startTime": 137.59999990463257,
+    "value": 5.900000095367432,
+    "label": "custom"
+  },
+  {
+    "timestamp": 1653633383624,
+    "date": "5/27/2022, 6:36:23 AM",
+    "route": "/",
+    "geo": {
+      "city": "Montreal",
+      "country": "CA",
+      "latitude": "45.5332",
+      "longitude": "-73.6091",
+      "region": "QC"
+    },
+    "method": "GET",
+    "browser": { "name": "Chrome", "version": "102.0.5005.61", "major": "102" },
+    "device": {}
+  }
+]

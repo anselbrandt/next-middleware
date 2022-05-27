@@ -1,9 +1,11 @@
 import type { NextFetchEvent, NextRequest } from "next/server";
 import { HOST_URL } from "../constants";
 
+// http_request method=GET path=/ referrer=google.com @1434317560938
+
 export default function middleware(req: NextRequest, event: NextFetchEvent) {
-  const route = req.nextUrl.pathname;
-  if (!route.includes("/api/metrics")) {
+  const path = req.nextUrl.pathname;
+  if (!path.includes("/api/metrics")) {
     const time = new Date();
     const timestamp = time.getTime();
     const date = time.toLocaleString();
@@ -15,23 +17,27 @@ export default function middleware(req: NextRequest, event: NextFetchEvent) {
     const logData = {
       timestamp,
       date,
-      route,
+      path,
       referrer,
       geo,
       method,
       browser,
       device,
     };
+    const logKey = `${time.toLocaleTimeString()} http_request method=${method} path=${path} referrer=${referrer} @${timestamp}`;
     event.waitUntil(
       (async () => {
         try {
-          const response = await fetch(`${HOST_URL}/api/metrics/`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(logData),
-          });
+          const response = await fetch(
+            `${HOST_URL}/api/metrics/${encodeURIComponent(logKey)}`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(logData),
+            }
+          );
           await response.text();
           return response.ok;
         } catch (err) {

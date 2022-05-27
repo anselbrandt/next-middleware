@@ -14,10 +14,10 @@ export default async function handler(
       origin: HOST_URL,
       optionsSuccessStatus: 200,
     });
-
+    const key = req.query.params as string;
     const logData = req.body;
     const client = new Redis(REDIS_URL);
-    client.set(logData.timestamp.toString(), JSON.stringify(logData));
+    client.set(key, JSON.stringify(logData));
     res.send("ok");
   } catch (err) {
     const error: any = err;
