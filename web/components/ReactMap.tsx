@@ -1,7 +1,11 @@
+import { FeatureCollection } from "geojson";
 import { useRef } from "react";
 import type { GeoJSONSource, MapRef } from "react-map-gl";
 import { Layer, Map, Source } from "react-map-gl";
 import { MAPBOX_TOKEN } from "../constants";
+import logs from "../data/sampleLogs.json";
+import { makeFeatures } from "../utils";
+import { LogEntry } from "../utils/types";
 import {
   clusterCountLayer,
   clusterLayer,
@@ -9,15 +13,14 @@ import {
 } from "./layers";
 
 export default function ReactMap() {
+  const data = makeFeatures(logs as LogEntry[]) as FeatureCollection;
   const mapRef = useRef<MapRef>(null);
 
   const onClick = (event: any) => {
     const feature = event.features[0];
     const clusterId = feature.properties.cluster_id;
 
-    const mapboxSource = mapRef.current!.getSource(
-      "earthquakes"
-    ) as GeoJSONSource;
+    const mapboxSource = mapRef.current!.getSource("logs") as GeoJSONSource;
 
     mapboxSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
       if (err) {
@@ -50,7 +53,7 @@ export default function ReactMap() {
         <Source
           id="earthquakes"
           type="geojson"
-          data="https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson"
+          data={data}
           cluster={true}
           clusterMaxZoom={14}
           clusterRadius={50}
