@@ -14,6 +14,7 @@ import {
 
 export default function ReactMap() {
   const data = makeFeatures(logs as LogEntry[]) as FeatureCollection;
+  console.log(data);
   const mapRef = useRef<MapRef>(null);
 
   const onClick = (event: any) => {

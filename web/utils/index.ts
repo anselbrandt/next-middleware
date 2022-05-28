@@ -44,7 +44,7 @@ import { LogEntry } from "./types";
 
 export const makeFeatures = (arr: LogEntry[]) => {
   const features = arr
-    .filter((log) => log.geo)
+    .filter((log) => log.geo && log.geo.latitude && log.geo.longitude)
     .map((log) => ({
       type: "Feature",
       properties: {
