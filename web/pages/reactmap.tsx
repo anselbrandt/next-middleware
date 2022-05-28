@@ -1,12 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
 import ReactMap from "../components/ReactMap";
 import styles from "../styles/Home.module.css";
 
 const Analytics: NextPage = () => {
-  const [content, setContent] = useState("");
   return (
     <div className={styles.container}>
       <Head>
