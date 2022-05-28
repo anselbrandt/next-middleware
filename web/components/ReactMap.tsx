@@ -40,9 +40,9 @@ const ReactMap: NextPage<Props> = ({ data }) => {
     <>
       <Map
         initialViewState={{
-          latitude: 41,
-          longitude: 11,
-          zoom: 0.25,
+          latitude: 43.75,
+          longitude: 11.75,
+          zoom: 0.23,
         }}
         style={{ width: "100%", height: "100%" }}
         mapStyle="mapbox://styles/mapbox/dark-v9"
@@ -50,6 +50,7 @@ const ReactMap: NextPage<Props> = ({ data }) => {
         interactiveLayerIds={[clusterLayer.id]}
         onClick={onClick}
         ref={mapRef}
+        onMoveEnd={(e) => console.log(e)}
       >
         {data && (
           <Source

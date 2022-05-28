@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -28,20 +29,26 @@ const Home: NextPage = () => {
             <p>Find in-depth information about Next.js features and API.</p>
           </a>
 
-          <a href="/api/analytics/keys" className={styles.card}>
-            <h2>Keys &rarr;</h2>
-            <p>Basic log entries</p>
-          </a>
+          <Link href="/api/analytics/keys">
+            <div className={styles.card}>
+              <h2>Keys &rarr;</h2>
+              <p>Basic log entries</p>
+            </div>
+          </Link>
 
-          <a href="/api/analytics/logs" className={styles.card}>
-            <h2>Logs &rarr;</h2>
-            <p>Structured logs</p>
-          </a>
+          <Link href="/api/analytics/logs">
+            <div className={styles.card}>
+              <h2>Logs &rarr;</h2>
+              <p>Structured logs</p>
+            </div>
+          </Link>
 
-          <a href="/analytics" className={styles.card}>
-            <h2>Analytics &rarr;</h2>
-            <p>Analytics dashboard</p>
-          </a>
+          <Link href="/analytics">
+            <div className={styles.card}>
+              <h2>Analytics &rarr;</h2>
+              <p>Analytics dashboard</p>
+            </div>
+          </Link>
         </div>
       </main>
 
