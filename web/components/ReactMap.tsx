@@ -40,9 +40,9 @@ const ReactMap: NextPage<Props> = ({ data }) => {
     <>
       <Map
         initialViewState={{
-          latitude: 40.67,
-          longitude: -103.59,
-          zoom: 3,
+          latitude: 41,
+          longitude: 11,
+          zoom: 0.25,
         }}
         style={{ width: "100%", height: "100%" }}
         mapStyle="mapbox://styles/mapbox/dark-v9"
