@@ -1,4 +1,5 @@
 import type { NextFetchEvent, NextRequest } from "next/server";
+import { HOST_URL } from "../constants";
 
 export default function middleware(req: NextRequest, event: NextFetchEvent) {
   const path = req.nextUrl.pathname;
@@ -26,7 +27,7 @@ export default function middleware(req: NextRequest, event: NextFetchEvent) {
       (async () => {
         try {
           const response = await fetch(
-            `/api/metrics/${encodeURIComponent(logKey)}`,
+            `${HOST_URL}/api/metrics/${encodeURIComponent(logKey)}`,
             {
               method: "POST",
               headers: {
