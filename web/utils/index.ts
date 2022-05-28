@@ -43,24 +43,26 @@
 import { LogEntry } from "./types";
 
 export const makeFeatures = (arr: LogEntry[]) => {
-  const features = arr
-    .filter((log) => log.geo && log.geo.latitude && log.geo.longitude)
-    .map((log) => ({
-      type: "Feature",
-      properties: {
-        id: log.timestamp,
+  if (arr) {
+    const features = arr
+      .filter((log) => log.geo && log.geo.latitude && log.geo.longitude)
+      .map((log) => ({
+        type: "Feature",
+        properties: {
+          id: log.timestamp,
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [log.geo.longitude, log.geo.latitude, 0],
+        },
+      }));
+    return {
+      type: "FeatureCollection",
+      crs: {
+        type: "name",
+        properties: { name: "urn:ogc:def:crs:OGC:1.3:CRS84" },
       },
-      geometry: {
-        type: "Point",
-        coordinates: [log.geo.longitude, log.geo.latitude, 0],
-      },
-    }));
-  return {
-    type: "FeatureCollection",
-    crs: {
-      type: "name",
-      properties: { name: "urn:ogc:def:crs:OGC:1.3:CRS84" },
-    },
-    features: features,
-  };
+      features: features,
+    };
+  }
 };
