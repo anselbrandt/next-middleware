@@ -38,20 +38,20 @@ const ReactMap: NextPage<Props> = ({ data }) => {
 
   return (
     <>
-      {data && (
-        <Map
-          initialViewState={{
-            latitude: 40.67,
-            longitude: -103.59,
-            zoom: 3,
-          }}
-          style={{ width: "100%", height: "100%" }}
-          mapStyle="mapbox://styles/mapbox/dark-v9"
-          mapboxAccessToken={MAPBOX_TOKEN}
-          interactiveLayerIds={[clusterLayer.id]}
-          onClick={onClick}
-          ref={mapRef}
-        >
+      <Map
+        initialViewState={{
+          latitude: 40.67,
+          longitude: -103.59,
+          zoom: 3,
+        }}
+        style={{ width: "100%", height: "100%" }}
+        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapboxAccessToken={MAPBOX_TOKEN}
+        interactiveLayerIds={[clusterLayer.id]}
+        onClick={onClick}
+        ref={mapRef}
+      >
+        {data && (
           <Source
             id="earthquakes"
             type="geojson"
@@ -64,8 +64,8 @@ const ReactMap: NextPage<Props> = ({ data }) => {
             <Layer {...clusterCountLayer} />
             <Layer {...unclusteredPointLayer} />
           </Source>
-        </Map>
-      )}
+        )}
+      </Map>
     </>
   );
 };
