@@ -21,7 +21,13 @@ const Analytics: NextPage = () => {
 
         <p className={styles.description}>blah, blah, blah</p>
 
-        <div style={{ width: "600px", height: "400px" }}>
+        <div
+          style={{
+            width: "600px",
+            height: "400px",
+            outline: "1px solid gainsboro",
+          }}
+        >
           <SimpleMap setTooltipContent={setContent} />
           <ReactTooltip>{content}</ReactTooltip>
         </div>

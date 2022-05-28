@@ -34,7 +34,7 @@ const SimpleMap: NextPage<Props> = ({ setTooltipContent }: Props) => {
       <ComposableMap
         data-tip=""
         projection="geoMercator"
-        projectionConfig={{ scale: 25 }}
+        projectionConfig={{ scale: 100 }}
         width={600}
         height={400}
       >
