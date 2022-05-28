@@ -9,7 +9,6 @@ export default function useGetLogs() {
     if (typeof window !== undefined) {
       const fetchData = async () => {
         try {
-          console.log("fetching logs...");
           const response = await fetch("/api/analytics/logs");
           const json = (await response.json()) as LogEntry[];
           setData(json);

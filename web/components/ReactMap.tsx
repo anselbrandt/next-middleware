@@ -13,7 +13,7 @@ import {
 } from "./layers";
 
 export default function ReactMap() {
-  const [logs] = useGetLogs();
+  const [logs, error] = useGetLogs();
   const logEntries = logs as LogEntry[];
   const data = makeFeatures(logEntries) as FeatureCollection;
   const mapRef = useRef<MapRef>(null);
@@ -39,6 +39,11 @@ export default function ReactMap() {
 
   return (
     <>
+      {error && (
+        <div>
+          <pre>{JSON.stringify(error)}</pre>
+        </div>
+      )}
       {data && (
         <Map
           initialViewState={{
