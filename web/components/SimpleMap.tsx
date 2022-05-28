@@ -1,3 +1,4 @@
+// import { scaleLinear } from "d3-scale";
 import type { NextPage } from "next";
 import React, { Dispatch, memo, SetStateAction } from "react";
 import {
@@ -6,7 +7,6 @@ import {
   Geography,
   ZoomableGroup,
 } from "react-simple-maps";
-
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
@@ -20,21 +20,32 @@ const rounded = (num: number) => {
   }
 };
 
+// const colorScale = scaleLinear()
+//   .domain([0.29, 0.68])
+//   .range(["#ffedea", "#ff5233"]);
+
 interface Props {
   setTooltipContent: Dispatch<SetStateAction<string>>;
 }
 
-const MapChart: NextPage<Props> = ({ setTooltipContent }: Props) => {
+const SimpleMap: NextPage<Props> = ({ setTooltipContent }: Props) => {
   return (
     <>
-      <ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
-        <ZoomableGroup>
+      <ComposableMap
+        data-tip=""
+        projection="geoMercator"
+        projectionConfig={{ scale: 25 }}
+        width={600}
+        height={400}
+      >
+        <ZoomableGroup center={[0, 0]}>
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => (
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
+                  fill={"#F5F4F6"}
                   onMouseEnter={() => {
                     const { NAME, POP_EST } = geo.properties;
                     setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
@@ -66,4 +77,4 @@ const MapChart: NextPage<Props> = ({ setTooltipContent }: Props) => {
   );
 };
 
-export default memo(MapChart);
+export default memo(SimpleMap);
