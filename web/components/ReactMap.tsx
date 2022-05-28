@@ -1,21 +1,20 @@
 import { FeatureCollection } from "geojson";
+import type { NextPage } from "next";
 import { useRef } from "react";
 import type { GeoJSONSource, MapRef } from "react-map-gl";
 import { Layer, Map, Source } from "react-map-gl";
 import { MAPBOX_TOKEN } from "../constants";
-import { makeFeatures } from "../utils";
-import { LogEntry } from "../utils/types";
-import useGetLogs from "../utils/useGetLogs";
 import {
   clusterCountLayer,
   clusterLayer,
   unclusteredPointLayer,
 } from "./layers";
 
-export default function ReactMap() {
-  const [logs, error] = useGetLogs();
-  const logEntries = logs as LogEntry[];
-  const data = makeFeatures(logEntries) as FeatureCollection;
+interface Props {
+  data: FeatureCollection;
+}
+
+const ReactMap: NextPage<Props> = ({ data }) => {
   const mapRef = useRef<MapRef>(null);
 
   const onClick = (event: any) => {
@@ -39,11 +38,6 @@ export default function ReactMap() {
 
   return (
     <>
-      {error && (
-        <div>
-          <pre>{JSON.stringify(error)}</pre>
-        </div>
-      )}
       {data && (
         <Map
           initialViewState={{
@@ -74,4 +68,6 @@ export default function ReactMap() {
       )}
     </>
   );
-}
+};
+
+export default ReactMap;
