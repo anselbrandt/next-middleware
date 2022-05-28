@@ -1,5 +1,4 @@
 import type { AppProps, NextWebVitalsMetric } from "next/app";
-import { HOST_URL } from "../constants";
 import "../styles/globals.css";
 
 export async function reportWebVitals(metric: NextWebVitalsMetric) {
@@ -11,16 +10,13 @@ export async function reportWebVitals(metric: NextWebVitalsMetric) {
     const logKey = `${timestamp}@${time.toLocaleTimeString()} web_vitals ${
       metric.name
     }=${metric.value}`;
-    const response = await fetch(
-      `${HOST_URL}/api/metrics/${encodeURIComponent(logKey)}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(metricData),
-      }
-    );
+    const response = await fetch(`/api/metrics/${encodeURIComponent(logKey)}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(metricData),
+    });
     await response.text();
     return response.ok;
   } catch (err) {
