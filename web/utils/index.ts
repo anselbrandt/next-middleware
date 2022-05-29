@@ -142,12 +142,12 @@ export const getWebvitals = (arr: string[]) => {
       return {
         key: key,
         count: count,
-        min: min.toFixed(),
-        max: max.toFixed(),
-        avg: avg.toFixed(),
+        min: +min.toFixed(),
+        max: +max.toFixed(),
+        avg: +avg.toFixed(),
       };
     })
-    .sort((a, b) => b.count - a.count);
+    .sort((a, b) => b.max - a.max);
 
   return webvitals;
 };

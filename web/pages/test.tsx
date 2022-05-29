@@ -13,7 +13,7 @@ const Test: NextPage = () => {
   const referrers = getReferrs(data);
   const webvitals = getWebvitals(data);
 
-  const width = "400px";
+  const width = "425px";
   return (
     <div className={styles.container}>
       <Header title={"Test Page"} />
@@ -25,8 +25,9 @@ const Test: NextPage = () => {
           <div>
             <div>Paths</div>
             <div style={{ width: width }}>
-              {paths.map((path) => (
+              {paths.map((path, index) => (
                 <div
+                  key={index}
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <div>{path.route}</div>
@@ -38,8 +39,9 @@ const Test: NextPage = () => {
           <div>
             <div>Referrers</div>
             <div style={{ width: width }}>
-              {referrers.map((referrer) => (
+              {referrers.map((referrer, index) => (
                 <div
+                  key={index}
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <div>{referrer.referrer}</div>
@@ -51,8 +53,9 @@ const Test: NextPage = () => {
           <div>
             <div>Webvitals</div>
             <div style={{ width: width }}>
-              {webvitals.map((vital) => (
+              {webvitals.map((vital, index) => (
                 <div
+                  key={index}
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <div>{vital.key}</div>

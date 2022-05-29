@@ -8,8 +8,10 @@ export async function reportWebVitals(metric: NextWebVitalsMetric) {
     const time = new Date();
     const timestamp = time.getTime();
     const date = time.toLocaleString();
-    const metricData = { timestamp, date, ...metric };
-    const logKey = `${timestamp}@${time.toLocaleTimeString()} web_vitals ${
+    const path = window.location.pathname;
+    console.log(path);
+    const metricData = { timestamp, date, path, ...metric };
+    const logKey = `${timestamp}@${time.toLocaleTimeString()} web_vitals path=${path} ${
       metric.name
     }=${metric.value}`;
     const response = await fetch(`/api/metrics/${encodeURIComponent(logKey)}`, {
