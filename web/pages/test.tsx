@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import logs from "../data/sampleKeys.json";
 import styles from "../styles/Home.module.css";
-import { getPaths, getReferrs, getWebvitals } from "../utils";
+import { getPaths, getReferrs, getWebvitalsDetailed } from "../utils";
 
 const Test: NextPage = () => {
   const data = logs
@@ -11,12 +11,7 @@ const Test: NextPage = () => {
     .map((log) => log.replace("p.m.", "PM"));
   const paths = getPaths(data);
   const referrers = getReferrs(data);
-  const webvitals = getWebvitals(data);
-  const webvitalsLogs = data
-    .filter((log) => log.includes("web_vitals"))
-    .map((log) => log.split(" "))
-    .sort((a, b) => ("" + a[3]).localeCompare(b[3]))
-    .map((log) => log.join(" "));
+  const webvitals = getWebvitalsDetailed(data);
   const width = "425px";
   return (
     <div className={styles.container}>
@@ -55,22 +50,25 @@ const Test: NextPage = () => {
             </div>
           </div>
           <div>
-            <div>Webvitals</div>
-            <div style={{ width: width }}>
-              {webvitals.map((vital, index) => (
-                <div
-                  key={index}
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <div>{vital.key}</div>
-                  <div>{vital.max}ms</div>
+            {webvitals.map((vital, index) => (
+              <div key={index}>
+                <div>{vital.path}</div>
+                <div>
+                  {vital.metrics.map((metric) => (
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>{metric.vital}</div>
+                      <div>{metric.max}ms</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </div>
-        <div>
-          <pre>{JSON.stringify(webvitalsLogs, null, 2)}</pre>
         </div>
       </main>
 
