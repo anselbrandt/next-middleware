@@ -54,8 +54,9 @@ const Test: NextPage = () => {
               <div key={index}>
                 <div>{vital.path}</div>
                 <div>
-                  {vital.metrics.map((metric) => (
+                  {vital.metrics.map((metric, index) => (
                     <div
+                      key={index}
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
