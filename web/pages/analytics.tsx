@@ -8,6 +8,8 @@ import { makeFeatures } from "../utils";
 import { LogEntry } from "../utils/types";
 import useGetLogs from "../utils/useGetLogs";
 
+// add upstash response time
+
 const Analytics: NextPage = () => {
   const [logs, error] = useGetLogs();
   const logEntries = logs as LogEntry[];
