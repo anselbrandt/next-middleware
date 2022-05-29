@@ -117,7 +117,7 @@ export const getWebvitals = (arr: string[]) => {
   const vitals = arr
     .filter((log) => log.includes("web_vitals"))
     .map((log) => log.split(" "))
-    .map((log) => log[3]);
+    .map((log) => log[4]);
   const labelsMap = new Map();
   vitals.forEach((vital) => {
     const [key, value] = vital.split("=");

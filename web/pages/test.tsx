@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import logs from "../data/largeKeys.json";
+import logs from "../data/sampleKeys.json";
 import styles from "../styles/Home.module.css";
 import { getPaths, getReferrs, getWebvitals } from "../utils";
 
@@ -64,6 +64,19 @@ const Test: NextPage = () => {
               ))}
             </div>
           </div>
+        </div>
+        <div>
+          <pre>
+            {JSON.stringify(
+              data
+                .filter((log) => log.includes("web_vitals"))
+                .map((log) => log.split(" "))
+                .sort((a, b) => ("" + a[3]).localeCompare(b[3]))
+                .map((log) => log.join(" ")),
+              null,
+              2
+            )}
+          </pre>
         </div>
       </main>
 
