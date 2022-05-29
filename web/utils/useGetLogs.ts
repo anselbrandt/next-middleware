@@ -10,8 +10,13 @@ export default function useGetLogs() {
       const fetchData = async () => {
         try {
           const response = await fetch("/api/analytics/logs");
-          const json = (await response.json()) as LogEntry[];
-          setData(json);
+          if (response.status === 200) {
+            const json = (await response.json()) as LogEntry[];
+            setData(json);
+          } else {
+            const text = await response.text();
+            setError(text);
+          }
         } catch (e) {
           const err = e as Error;
           setError(err.message);
