@@ -66,3 +66,98 @@ export const makeFeatures = (arr: LogEntry[]) => {
     };
   }
 };
+
+export const getPaths = (arr: string[]) => {
+  const paths = arr
+    .filter((log) => log.includes("http_request"))
+    .map((log) => log.split(" ").filter((log) => log.includes("path="))[0])
+    .map((path) => path.replace("path=", ""));
+  const pathMap = new Map();
+  paths.forEach((path) => {
+    const prev = pathMap.get(path);
+    if (prev) {
+      pathMap.set(path, prev + 1);
+    } else {
+      pathMap.set(path, 1);
+    }
+  });
+  const pathArr = Array.from(pathMap)
+    .map((path) => ({
+      route: path[0],
+      count: path[1],
+    }))
+    .sort((a, b) => b.count - a.count);
+  return pathArr;
+};
+
+export const getReferrs = (arr: string[]) => {
+  const paths = arr
+    .filter((log) => log.includes("http_request"))
+    .map((log) => log.split(" ").filter((log) => log.includes("referrer="))[0])
+    .map((referrer) => referrer.replace("referrer=", ""));
+  const referrerMap = new Map();
+  paths.forEach((referrer) => {
+    const prev = referrerMap.get(referrer);
+    if (prev) {
+      referrerMap.set(referrer, prev + 1);
+    } else {
+      referrerMap.set(referrer, 1);
+    }
+  });
+  const pathArr = Array.from(referrerMap)
+    .map((referrer) => ({
+      referrer: referrer[0],
+      count: referrer[1],
+    }))
+    .sort((a, b) => b.count - a.count);
+  return pathArr;
+};
+
+export const getWebvitals = (arr: string[]) => {
+  const vitals = arr
+    .filter((log) => log.includes("web_vitals"))
+    .map((log) => log.split(" "))
+    .map((log) => log[3]);
+  const labelsMap = new Map();
+  vitals.forEach((vital) => {
+    const [key, value] = vital.split("=");
+    const prev = labelsMap.get(key);
+    if (prev) {
+      labelsMap.set(key, [...prev, value]);
+    } else {
+      labelsMap.set(key, [value]);
+    }
+  });
+  const webvitals = Array.from(labelsMap)
+    .map((entry) => {
+      const [key, values] = entry;
+      const count = values.length;
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const avg =
+        values.reduce(
+          (prev: number, cur: string) => prev + parseFloat(cur),
+          0
+        ) / values.length;
+      return {
+        key: key,
+        count: count,
+        min: min.toFixed(),
+        max: max.toFixed(),
+        avg: avg.toFixed(),
+      };
+    })
+    .sort((a, b) => b.count - a.count);
+
+  return webvitals;
+};
+
+const webVitalLabels = [
+  "FCP",
+  "TTFB",
+  "CLS",
+  "LCP",
+  "Next.js-hydration",
+  "Next.js-render",
+  "Next.js-route-change-to-render",
+];
