@@ -12,7 +12,11 @@ const Test: NextPage = () => {
   const paths = getPaths(data);
   const referrers = getReferrs(data);
   const webvitals = getWebvitals(data);
-
+  const webvitalsLogs = data
+    .filter((log) => log.includes("web_vitals"))
+    .map((log) => log.split(" "))
+    .sort((a, b) => ("" + a[3]).localeCompare(b[3]))
+    .map((log) => log.join(" "));
   const width = "425px";
   return (
     <div className={styles.container}>
@@ -66,17 +70,7 @@ const Test: NextPage = () => {
           </div>
         </div>
         <div>
-          <pre>
-            {JSON.stringify(
-              data
-                .filter((log) => log.includes("web_vitals"))
-                .map((log) => log.split(" "))
-                .sort((a, b) => ("" + a[3]).localeCompare(b[3]))
-                .map((log) => log.join(" ")),
-              null,
-              2
-            )}
-          </pre>
+          <pre>{JSON.stringify(webvitalsLogs, null, 2)}</pre>
         </div>
       </main>
 
