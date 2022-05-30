@@ -1,26 +1,20 @@
 import type { NextPage } from "next";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import logs from "../data/sampleKeys.json";
-import styles from "../styles/Home.module.css";
-import { getPaths, getReferrs, getWebvitalsDetailed } from "../utils";
+import { getPaths, getReferrs, getWebvitals } from "../utils";
 
-const Test: NextPage = () => {
-  const data = logs
-    .map((log) => log.replace("a.m.", "AM"))
-    .map((log) => log.replace("p.m.", "PM"));
+interface Props {
+  keys: string[] | undefined;
+}
+
+const Metrics: NextPage<Props> = ({ keys }) => {
+  const data = keys as string[];
   const paths = getPaths(data);
   const referrers = getReferrs(data);
-  const webvitals = getWebvitalsDetailed(data);
+  const webvitals = getWebvitals(data);
   const width = "425px";
   return (
-    <div className={styles.container}>
-      <Header title={"Test Page"} />
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>Test Page</h1>
-
-        <div className={styles.description}>
+    <>
+      {keys && (
+        <div>
           <div>
             <div>Paths</div>
             <div style={{ width: width }}>
@@ -71,11 +65,9 @@ const Test: NextPage = () => {
             ))}
           </div>
         </div>
-      </main>
-
-      <Footer />
-    </div>
+      )}
+    </>
   );
 };
 
-export default Test;
+export default Metrics;

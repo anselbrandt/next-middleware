@@ -74,54 +74,6 @@ export const getReferrs = (arr: string[]) => {
 export const getWebvitals = (arr: string[]) => {
   const vitals = arr
     .filter((log) => log.includes("web_vitals"))
-    .map((log) => log.split(" "))
-    .map((log) => log[4]);
-  const labelsMap = new Map();
-  vitals.forEach((vital) => {
-    const [key, value] = vital.split("=");
-    const prev = labelsMap.get(key);
-    if (prev) {
-      labelsMap.set(key, [...prev, value]);
-    } else {
-      labelsMap.set(key, [value]);
-    }
-  });
-  const webvitals = Array.from(labelsMap)
-    .map((entry) => {
-      const [key, values] = entry;
-      const count = values.length;
-      const min = Math.min(...values);
-      const max = Math.max(...values);
-      const avg =
-        values.reduce(
-          (prev: number, cur: string) => prev + parseFloat(cur),
-          0
-        ) / values.length;
-      return {
-        key: key,
-        count: count,
-        min: +min.toFixed(),
-        max: +max.toFixed(),
-        avg: +avg.toFixed(),
-      };
-    })
-    .sort((a, b) => b.max - a.max);
-
-  return webvitals;
-};
-
-export const getWebvitalsSorted = (arr: string[]) => {
-  const details = arr
-    .filter((log) => log.includes("web_vitals"))
-    .map((log) => log.split(" "))
-    .sort((a, b) => ("" + a[3]).localeCompare(b[3]))
-    .map((log) => log.join(" "));
-  return details;
-};
-
-export const getWebvitalsDetailed = (arr: string[]) => {
-  const vitals = arr
-    .filter((log) => log.includes("web_vitals"))
     .map((log) => log.split(" ").slice(3, 5))
     .map((entry) => {
       const [path, value] = entry;
