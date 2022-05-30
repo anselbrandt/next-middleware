@@ -1,31 +1,31 @@
 import { LogEntry } from "./types";
 
 export const makeFeatures = (arr: LogEntry[]) => {
-  if (arr) {
-    const features = arr
-      .filter((log) => log.geo && log.geo.latitude && log.geo.longitude)
-      .map((log) => ({
-        type: "Feature",
-        properties: {
-          id: log.timestamp,
-        },
-        geometry: {
-          type: "Point",
-          coordinates: [log.geo.longitude, log.geo.latitude, 0],
-        },
-      }));
-    return {
-      type: "FeatureCollection",
-      crs: {
-        type: "name",
-        properties: { name: "urn:ogc:def:crs:OGC:1.3:CRS84" },
+  if (!arr) return;
+  const features = arr
+    .filter((log) => log.geo && log.geo.latitude && log.geo.longitude)
+    .map((log) => ({
+      type: "Feature",
+      properties: {
+        id: log.timestamp,
       },
-      features: features,
-    };
-  }
+      geometry: {
+        type: "Point",
+        coordinates: [log.geo.longitude, log.geo.latitude, 0],
+      },
+    }));
+  return {
+    type: "FeatureCollection",
+    crs: {
+      type: "name",
+      properties: { name: "urn:ogc:def:crs:OGC:1.3:CRS84" },
+    },
+    features: features,
+  };
 };
 
 export const getPaths = (arr: string[]) => {
+  if (!arr) return;
   const paths = arr
     .filter((log) => log.includes("http_request"))
     .map((log) => log.split(" ").filter((log) => log.includes("path="))[0])
@@ -49,6 +49,7 @@ export const getPaths = (arr: string[]) => {
 };
 
 export const getReferrs = (arr: string[]) => {
+  if (!arr) return;
   const paths = arr
     .filter((log) => log.includes("http_request"))
     .map((log) => log.split(" ").filter((log) => log.includes("referrer="))[0])
@@ -72,6 +73,7 @@ export const getReferrs = (arr: string[]) => {
 };
 
 export const getWebvitals = (arr: string[]) => {
+  if (!arr) return;
   const vitals = arr
     .filter((log) => log.includes("web_vitals"))
     .map((log) => log.split(" ").slice(3, 5))
@@ -82,7 +84,6 @@ export const getWebvitals = (arr: string[]) => {
         value: value,
       };
     });
-
   const vitalsMap = new Map();
   vitals.forEach((vital) => {
     const { path, value } = vital;
@@ -125,13 +126,3 @@ export const getWebvitals = (arr: string[]) => {
   });
   return vitalsArr;
 };
-
-const webVitalLabels = [
-  "FCP",
-  "TTFB",
-  "CLS",
-  "LCP",
-  "Next.js-hydration",
-  "Next.js-render",
-  "Next.js-route-change-to-render",
-];

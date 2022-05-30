@@ -18,7 +18,7 @@ const Metrics: NextPage<Props> = ({ keys }) => {
           <div>
             <div>Paths</div>
             <div style={{ width: width }}>
-              {paths.map((path, index) => (
+              {paths!.map((path, index) => (
                 <div
                   key={index}
                   style={{ display: "flex", justifyContent: "space-between" }}
@@ -32,7 +32,7 @@ const Metrics: NextPage<Props> = ({ keys }) => {
           <div>
             <div>Referrers</div>
             <div style={{ width: width }}>
-              {referrers.map((referrer, index) => (
+              {referrers!.map((referrer, index) => (
                 <div
                   key={index}
                   style={{ display: "flex", justifyContent: "space-between" }}
@@ -44,7 +44,7 @@ const Metrics: NextPage<Props> = ({ keys }) => {
             </div>
           </div>
           <div>
-            {webvitals.map((vital, index) => (
+            {webvitals!.map((vital, index) => (
               <div key={index}>
                 <div>{vital.path}</div>
                 <div>
