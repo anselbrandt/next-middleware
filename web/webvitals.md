@@ -1,17 +1,53 @@
 # Web Vitals
 
-TTFB = Time To First Byte
+https://nextjs.org/docs/advanced-features/measuring-performance#custom-metrics
 
-FCP = First Contentful Paint
+TTFB - Time To First Byte
 
-LCP = Largest Contentful Paint
+FCP - First Contentful Paint
 
-FID = First Input Delay
+LCP - Largest Contentful Paint < 2.5s
 
-CLS = Cumulative Layout Shift
+FID - First Input Delay < 100ms
 
-Next.js-route-change-to-render
+CLS - Cumulative Layout Shift < 0.1
+
+Next.js-route-change-to-render - amount of time it takes a page to start rendering after a route change
 
 Next.js-hydration
 
-Next.js-render
+Next.js-render - amount of time it takes a page to finish rendering after a route change
+
+```
+export function reportWebVitals(metric) {
+    switch (metric.name) {
+      case 'FCP':
+        // handle FCP results
+        sendAnalytics(metric);
+        break
+      case 'LCP':
+        sendAnalytics(metric);
+        break
+      case 'CLS':
+        sendAnalytics(metric);
+        break
+      case 'FID':
+        sendAnalytics(metric);
+        break
+      case 'TTFB':
+        sendAnalytics(metric);
+        break
+      case 'Next.js-hydration':
+        sendAnalytics(metric);
+        break
+      case 'Next.js-route-change-to-render':
+        sendAnalytics(metric);
+        break
+      case 'Next.js-render':
+        sendAnalytics(metric);
+        break
+      default:
+        break
+    }
+  }
+```
