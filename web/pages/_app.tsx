@@ -1,10 +1,12 @@
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import "../styles/globals.css";
+import log from "../utils/log";
 
 // add path from window
 
 export async function reportWebVitals(metric: NextWebVitalsMetric) {
   try {
+    log(metric);
     const time = new Date();
     const timestamp = time.getTime();
     const date = time.toLocaleString();

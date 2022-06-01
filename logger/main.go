@@ -26,7 +26,7 @@ func main() {
 	http.ListenAndServe(PORT, r)
 }
 
-func DataHandler(w http.ResponseWriter, r *http.Request) {
+func LogHandler(w http.ResponseWriter, r *http.Request) {
 	var logData map[string]interface{}
 	err := json.NewDecoder(r.Body).Decode(&logData)
 	if err != nil {
@@ -36,7 +36,7 @@ func DataHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "%v\n", logData)
 }
 
-func LogHandler(w http.ResponseWriter, r *http.Request) {
+func DataHandler(w http.ResponseWriter, r *http.Request) {
 	var logData LogData
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&logData)

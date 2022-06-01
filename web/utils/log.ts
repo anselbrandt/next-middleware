@@ -1,11 +1,19 @@
 import type { NextWebVitalsMetric } from "next/app";
 
-function sendAnalytics(metric: NextWebVitalsMetric) {}
+const LOG_URL = "http://localhost:5000/";
+
+function sendAnalytics(metric: NextWebVitalsMetric) {
+  const body = JSON.stringify(metric);
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(LOG_URL, body);
+  } else {
+    fetch(LOG_URL, { body, method: "POST", keepalive: true });
+  }
+}
 
 export default function log(metric: NextWebVitalsMetric) {
   switch (metric.name) {
     case "FCP":
-      // handle FCP results
       sendAnalytics(metric);
       break;
     case "LCP":
